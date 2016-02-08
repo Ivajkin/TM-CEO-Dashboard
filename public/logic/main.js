@@ -5,7 +5,7 @@
  */
 
 angular.module("ShineApp", ['duScroll', 'ngMaterial', 'ngAnimate', 'ngCookies', 'ngTouch',
-        'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app'])
+        'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3'])
     .config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider,
                       $mdIconProvider) {
         $stateProvider
