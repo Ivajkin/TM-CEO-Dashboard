@@ -6,114 +6,32 @@
 
 <body data-ng-app="ShineApp" data-ng-controller="ShineController">
 
-<% include ../partials/nav.ejs %>
+    <% include ../partials/nav.ejs %>
 
-<div class="jumbotron text-center">
-    <div class="container">
-        <a href="/" class="lang-logo">
-            <img src="/shine-logo.png">
-        </a>
-        <h1>ShineApp 3.0</h1>
-        <p>Мониторинг инстаграмма по введённым хэш-тэгам.</p>
-        <a type="button" class="btn btn-lg btn-default" href="#start" data-du-smooth-scroll=""><span class="glyphicon glyphicon-flash"></span> Запуск</a>
-        <a type="button" class="btn btn-lg btn-primary" href="#about" data-du-smooth-scroll=""><span class="glyphicon glyphicon-download"></span> Дополнительная информация</a>
+    <div class="jumbotron text-center">
+        <div class="container">
 
+            <!--[if lt IE 10]>
+            <p>Вы используете <strong>устаревший</strong> браузер. Пожалуйста
+                <a href="http://browsehappy.com/">обновите ваш браузер</a>
+                чтобы улучшить ваш опыт.</p>
+            <![endif]-->
 
-        <div class="video-container">
-            <video class="bgvideo" preload="true" autoplay="true" loop="true" controls="false" poster="/video/videoold.jpg">
-                <source src="/video/background.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;">
-                <source src="/video/background.mp4" type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;">
-                <source src="/video/background.webm" type="video/webm; codecs=&quot;vp8, vorbis&quot;">
-                Video не поддерживается вашим браузером.
-            </video>
-        </div>
-    </div>
-</div>
+            <div ui-view layout="row" layout-fill></div>
 
+            <% include ../partials/main.ejs %>
 
-<div id="start"></div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <h3><span class="glyphicon glyphicon-tags"></span> Хеш-тэги для отслеживания:</h3>
-            <div class="col-md-6">
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">#</span>
-                    <input data-ng-init="first_hash='cat'" data-ng-model="first_hash" type="text" class="form-control" placeholder="First hash" aria-describedby="basic-addon1" title="First hash">
-                </div>
-                <br/>
-                <div data-ng-repeat="p in pics | filter:first_hash | limitTo:30 | orderBy:orderBy" class="col-md-12">
-                    <!--suppress HtmlUnknownTarget -->
-                    <a href="{{p.link}}" target="_blank"><img data-ng-src="{{p.images.low_resolution.url}}" class="img-responsive thumbnail" title="{{p.caption.text}}" ></a>
-                    <span class="glyphicon glyphicon-heart"> {{p.likes.count}}</span>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">#</span>
-                    <input data-ng-init="second_hash='dog'" data-ng-model="second_hash" type="text" class="form-control" placeholder="Second hash" aria-describedby="basic-addon1" title="Second hash">
-                </div>
-                <br/>
-                <div data-ng-repeat="p in pics | filter:second_hash | limitTo:30 | orderBy:orderBy" class="col-md-12">
-                    <!--suppress HtmlUnknownTarget -->
-                    <a href="{{p.link}}" target="_blank"><img data-ng-src="{{p.images.low_resolution.url}}" class="img-responsive thumbnail" title="{{p.caption.text}}" ></a>
-                    <span class="glyphicon glyphicon-heart"> {{p.likes.count}}</span>
-                </div>
+            <div class="video-container">
+                <video class="bgvideo" preload="true" autoplay="true" loop="true" controls="false" poster="/video/videoold.jpg">
+                    <source src="/video/background.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;">
+                    <source src="/video/background.mp4" type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;">
+                    <source src="/video/background.webm" type="video/webm; codecs=&quot;vp8, vorbis&quot;">
+                    Video не поддерживается вашим браузером.
+                </video>
             </div>
         </div>
-        <div class="col-md-8">
-            <h1><span class="glyphicon glyphicon-info-sign"></span> Результат:</h1>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div data-ng-repeat="p in pics | filter:first_hash | filter:second_hash | orderBy:orderBy" class="col-md-3">
-                                <!--suppress HtmlUnknownTarget -->
-                                <a href="{{p.link}}" target="_blank"><img data-ng-src="{{p.images.low_resolution.url}}" class="img-responsive thumbnail" title="{{p.caption.text}}" ></a>
-                                <span class="glyphicon glyphicon-heart"> {{p.likes.count}}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <button type="button" class="btn btn-success" data-ng-click="getMore()">Обновить <span class="badge">{{pics.length}}</span></button>
-                    </div>
-                </div>
-        </div>
     </div>
-    <hr/>
-    <div class="row">
 
-        <div class="col-md-12">
-            <div id="about"></div>
-            <h3><span class="glyphicon glyphicon-info-sign"></span> Задача</h3>
-
-            <h4>Цель задания</h4>
-            <p>Максимально полно реализовать функциональность, описанную в техническом задании, и продемонстрировать свои умения по собственному усмотрению. При оценке выполнения тестового задания будут учитываться работоспособность, качество и оформление кода, обоснованность принятых архитектурных решений, а также инициатива кандидата (реализация функциональности, напрямую не указанной в ТЗ, но позволяющей продемонстрировать технические навыки кандидата). Оценивается как качество кода, так и вёрстка (HTML/CSS).</p>
-            <h4>Техническое задание</h4>
-            <h5>Основные требования</h5>
-            <p>Требуется реализовать приложение, которое мониторит инстаграмм по введённым хэш-тэгам.</p>
-            <ol>
-                <li>Запуск приложения
-                    <p>При запуске экран приложения делится на 3 столбца. 2 из них имеют поле ввода хэш-тега. Третий столбец отображает фотографии, которые подходят под оба тэга. Значения по умолчанию: #cat и #dog. Соответственно в 3-м столбце будут фотографии имеющие и тэг #cat и тэг #dog.</p>
-                </li>
-
-                <li>Работа приложения
-                    <p>2 колонки с тэгами отображают последние 30 фото и обновляются не чаще раза в 10 секунд. Дополнительная колонка с пересечением по всем 2 тэгам вычисляется самостоятельно на клиенте и сохраняет все фото. При условии изменения тэга в любой из 2х колонок набор в 3й - не очищается.</p>
-                </li>
-            </ol>
-            <h5>Технические ограничения</h5>
-            <p>Приложение разрабатывается с использованием фреймворка AngularJS и Должно быть построено по принципам SPA (Single Page Application), то есть работать без перезагрузки страницы. В разработке не допускается использование сторонних библиотек. Поддержка браузеров: Google Chrome актуальной версии.</p>
-            <h4>Требования к оформлению тестового задания</h4>
-            <p>Код проекта должен находиться в публичном git-репозитории на github.com. Все зависимости должны быть описаны в файле package.json или bower.json в корне проекта. Инструкции по установке, сборке и запуску приложения, должна быть описаны в файле README.md в корне проекта.</p>
-        </div>
-    </div> <!-- row -->
-    <hr/>
-    <div class="row">
-        <div class="span4 offset4 alert alert-info" role="alert">
-            <span class="glyphicon glyphicon-tree-conifer" aria-hidden="true"></span>
-            Хабаровск 2016
-        </div>
-    </div>
-</div>
 
 </body>
 </html>
