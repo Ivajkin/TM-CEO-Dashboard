@@ -28,3 +28,8 @@ or
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
+## Кейс проекта
+
+[ТМ Бизнес Решение в портфолио Тимофея Ивайкина и Edge](https://edgeivaikin.com/ru/cases/#tm-business-analytics)
+
+В карточке описаны разработка прототипа в Техно Медиа, роль Тимофея Ивайкина и сохранившиеся материалы.
